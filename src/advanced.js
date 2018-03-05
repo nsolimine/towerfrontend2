@@ -70,7 +70,7 @@ export class Section2 extends React.Component {
     return (
       <li key={item.id}>
         <div className="profile">
-          <h4 className="profileLevel" onClick={() => this.toggleFunction(item)}>Level: {item.id}</h4>
+          <h4 className="profileLevel" onClick={() => this.toggleFunction(item)}>Level Up: {item.artist}</h4>
         </div>
         <div className={this.state.togglePanels.includes(item.id)?"skills-container":"skills-container hidden"}>
           <p>Difficulty: {item.difficulty && item.difficulty.replace(/s$/,"")}</p>
