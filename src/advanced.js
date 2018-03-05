@@ -91,7 +91,7 @@ export class Section2 extends React.Component {
       <section>
         <h2>Advanced Songs</h2>
         <ul className = "advancedList">
-          {this.props.advancedlistings.map(this.createListItemAdvanced)}
+          {this.props.advancedlistings.sort((a, b) => a.id - b.id).map(this.createListItemAdvanced)}
         </ul>
       </section>
     );

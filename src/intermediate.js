@@ -92,7 +92,7 @@ export class Section extends React.Component{
       <section>
         <h2>Intermediate Songs</h2>
         <ul className = "intermediateList">
-          {this.props.intermediatelistings.map(this.createListItemIntermediate)}
+          {this.props.intermediatelistings.sort((a, b) => a.id - b.id).map(this.createListItemIntermediate)}
         </ul>
       </section>
     );
