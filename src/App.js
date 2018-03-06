@@ -129,7 +129,7 @@ class App extends Component {
             <Section2 advancedlistings={this.state.advanceds} updateSongObj={this.updateSongObj} loadData={this.loadData} />
           </div>
           <div className="mapDiv">
-            <h3>Find a music school near you!</h3>
+            <h3>Find a Denver music school near you!</h3>
             <MyMap />
           </div>
         </main>

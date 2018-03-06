@@ -77,7 +77,7 @@ export class Section2 extends React.Component {
           <p>Artist: {item.artist}</p>
           <p>Song: "{item.song}"</p>
           <p>Techniques Used: {item.technique}</p>
-          <p><a href={item.url} target="blank">Link to listen on YouTube</a></p>
+          <p><a href={item.url} target="blank">Listen on YouTube</a></p>
           <div className="buttons">
               {this.renderUpdateButton(item)}
               {this.renderDeleteButton(item)}
