@@ -2,6 +2,13 @@
   text-align: center;
 }
 
+body {
+  background-image: url("/guitar-wallpaper.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -43,11 +50,11 @@ main{
 }
 
 .songsDiv {
-  width: 33%;
+  width: 40%;
 }
 
 .formDiv {
-  width: 33%;
+  width: 30%;
 }
 
 .formDiv form {
@@ -57,7 +64,7 @@ main{
 }
 
 .updateDiv {
-  width: 33%;
+  width: 30%;
 }
 
 .updateDiv form {

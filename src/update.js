@@ -3,7 +3,6 @@ import React from "react";
 export default function UpdateForm({ onUpdate, updateObj }){
   return (
     <form className="update-form" onSubmit={onUpdate}>
-      <p>Remember to update <strong>ALL</strong> form fields!</p>
       <label htmlFor="id">Level Up: </label>
       <input type="text" id="namedisplay" name="name display" value={updateObj.artist} />
       <input type="hidden" id="artist" name="id" value={updateObj.id} />

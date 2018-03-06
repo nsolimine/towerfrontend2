@@ -124,6 +124,7 @@ class App extends Component {
           </div>
           <div className="updateDiv">
             <h3>Update your submission!</h3>
+            <p>Remember to update <strong>ALL</strong> form fields!</p>
             <UpdateForm  updateObj={this.state.updateObject} onUpdate={this.onUpdate} />
           </div>
         </main>
