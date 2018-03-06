@@ -4,6 +4,7 @@ import './App.css';
 import { Header } from "./header.js";
 import { Section } from "./intermediate.js";
 import { Section2 } from "./advanced.js";
+import MyMap from "./map.js";
 import SongForm from "./form.js";
 import UpdateForm from "./update.js";
 
@@ -117,15 +118,19 @@ class App extends Component {
           <div className="formDiv">
             <h3>Suggest a song!</h3>
             <SongForm onSubmit={this.onSubmit} />
+            <div className="updateDiv">
+              <h3>Update your submission!</h3>
+              <p>Remember to update <strong>ALL</strong> form fields!</p>
+              <UpdateForm  updateObj={this.state.updateObject} onUpdate={this.onUpdate} />
+            </div>
           </div>
           <div className="songsDiv">
             <Section intermediatelistings={this.state.intermediates} updateSongObj={this.updateSongObj} loadData={this.loadData} />
             <Section2 advancedlistings={this.state.advanceds} updateSongObj={this.updateSongObj} loadData={this.loadData} />
           </div>
-          <div className="updateDiv">
-            <h3>Update your submission!</h3>
-            <p>Remember to update <strong>ALL</strong> form fields!</p>
-            <UpdateForm  updateObj={this.state.updateObject} onUpdate={this.onUpdate} />
+          <div className="mapDiv">
+            <h3>Find a music school near you!</h3>
+            <MyMap />
           </div>
         </main>
       </div>
