@@ -4,8 +4,8 @@ export default function UpdateForm({ onUpdate, updateObj }){
   return (
     <form className="update-form" onSubmit={onUpdate}>
       <label htmlFor="id">Level Up: </label>
-      <input type="text" id="namedisplay" name="name display" value={updateObj.artist} />
-      <input type="hidden" id="artist" name="id" value={updateObj.id} />
+      <input type="text" id="namedisplay" name="namedisplay" value={updateObj.artist} />
+      <input type="hidden" id="id" name="id" value={updateObj.id} />
       <label htmlFor="difficulty">Difficulty: </label>
       <input type="text" name="difficulty" id="difficulty" value={updateObj.difficulty && updateObj.difficulty.replace(/s$/,"")} />
       <label htmlFor="artist">Update the artist: </label>
