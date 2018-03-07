@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  color: burgundy;
 }
 
 body {
@@ -7,6 +8,7 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
   background-attachment: fixed;
+  padding: 20px;
 }
 
 main{
@@ -25,11 +27,11 @@ ul,li {
 }
 
 .songsDiv {
-  width: 40%;
+  width: 35%;
 }
 
 .formDiv {
-  width: 30%;
+  width: 32.5%;
 }
 
 .formDiv form {
@@ -48,10 +50,22 @@ ul,li {
 }
 
 .mapDiv {
-width: 30%
+  width: 32.5%;
+  opacity: 0.9;
 }
 
 .leaflet-container {
-      height: 400px;
-      margin: 0 auto;
+  height: 400px;
+  margin: 0 auto;
     }
+
+.map-header {
+  color: #E9DBD2;
+}
+
+.sub-header {
+  background: linear-gradient(50deg, black, #E9DBD2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.45rem;
+}
