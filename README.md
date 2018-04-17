@@ -14,7 +14,7 @@ Instructions:<br/>
 2. If there is a song that you would like to add to the list, use the "Suggest a song!" form and add it for other players to see.<br/>
 ![Alt text](/screenshots/update.png?raw=true "update")<br/>
 3. If you need to change any of the information in your submission, click the "Update" button, and it will populate the "Update your submission!" form and allow you to fix any spelling changes or broken links.<br/>
-![Alt text](/screenshots/groupCard.png?raw=true "groupCard")<br/>
+![Alt text](/screenshots/map.png?raw=true "map")<br/>
 4. Feel like you need professional, in-person instruction?  Use the map to find an instructor near your house, their location, website and contact information will be available upon clicking any of the location markers.
 5. Don't forget to have fun! Playing guitar is an amazing hobby that allows you to express yourself and should never be stressful.<br/>
 
