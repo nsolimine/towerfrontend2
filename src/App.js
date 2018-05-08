@@ -66,7 +66,8 @@ class App extends Component {
       artist: data.get("artist"),
       song: data.get("song"),
       technique: data.get("technique"),
-      url: data.get("url")
+      url: data.get("url"),
+      tabUrl: data.get("tabUrl")
     };
     this.createSong(postObj.difficulty, postObj)
     event.target.reset();
@@ -79,7 +80,8 @@ class App extends Component {
       artist: event.artist,
       song: event.song,
       technique: event.technique,
-      url: event.url
+      url: event.url,
+      tabUrl: event.tabUrl
     }
     this.setState({
       updateObject: updateObj
@@ -104,11 +106,12 @@ class App extends Component {
     const updateData = new FormData(event.target);
     const updateObj = {
       id: updateData.get("id"),
-      difficulty: updateData.get("difficulty") + "s",
+      difficulty: updateData.get("difficulty"),
       artist: updateData.get("artist"),
       song: updateData.get("song"),
       technique: updateData.get("technique"),
-      url: updateData.get("url")
+      url: updateData.get("url"),
+      tabUrl: updateData.get("tabUrl")
     };
     this.updateSong(updateObj.difficulty, updateObj)
     event.target.reset();
