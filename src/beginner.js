@@ -5,8 +5,7 @@ export class Section1 extends React.Component {
   constructor(props){
       super(props);
       this.state = {
-      toggleClass: true,
-      togglePanels: []
+      togglePanels: [],
       }
       this.toggleFunction = this.toggleFunction.bind(this);
       this.createListItemBeginner = this.createListItemBeginner.bind(this);
