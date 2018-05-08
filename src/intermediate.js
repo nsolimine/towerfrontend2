@@ -36,7 +36,7 @@ export class Section extends React.Component{
     onDeleteIntermediate = (event) => {
       event.preventDefault();
       const data = new FormData(event.target);
-      this.deleteSongIntermediate('intermediates', data.get('id'))
+      this.deleteSongIntermediate('intermediate', data.get('id'))
     }
 
     renderDeleteButton = (item) => {

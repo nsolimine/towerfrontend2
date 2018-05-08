@@ -4,6 +4,7 @@ import './App.css';
 import { Header } from "./header.js";
 import { Section } from "./intermediate.js";
 import { Section2 } from "./advanced.js";
+import { Section3 } from "./expert.js";
 import MyMap from "./map.js";
 import SongForm from "./form.js";
 import UpdateForm from "./update.js";
@@ -13,8 +14,9 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      intermediates: [],
-      advanceds: [],
+      intermediate: [],
+      advanced: [],
+      expert: [],
       updateObject: {}
   };
   this.onUpdate = this.onUpdate.bind(this);
@@ -22,7 +24,7 @@ class App extends Component {
 
   loadData = () => {
     this.setState({loading: true})
-    Promise.all([this.getSongs("intermediates"), this.getSongs("advanceds")])
+    Promise.all([this.getSongs("intermediate"), this.getSongs("advanced"), this.getSongs("expert")])
     .then(() => {
       this.setState({loading: false})
     });
@@ -125,8 +127,9 @@ class App extends Component {
             </div>
           </div>
           <div className="songsDiv">
-            <Section intermediatelistings={this.state.intermediates} updateSongObj={this.updateSongObj} loadData={this.loadData} />
-            <Section2 advancedlistings={this.state.advanceds} updateSongObj={this.updateSongObj} loadData={this.loadData} />
+            <Section intermediatelistings={this.state.intermediate} updateSongObj={this.updateSongObj} loadData={this.loadData} />
+            <Section2 advancedlistings={this.state.advanced} updateSongObj={this.updateSongObj} loadData={this.loadData} />
+            <Section3 expertlistings={this.state.expert} updateSongObj={this.updateSongObj} loadData={this.loadData} />
           </div>
           <div className="mapDiv">
             <h3 className="map-header">Find a Denver music school near you!</h3>
