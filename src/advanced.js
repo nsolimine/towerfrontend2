@@ -1,6 +1,6 @@
 import React from "react";
 
-export class Section2 extends React.Component {
+export class Section3 extends React.Component {
 
   constructor(props){
       super(props);

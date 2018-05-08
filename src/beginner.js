@@ -1,6 +1,6 @@
 import React from "react";
 
-export class Section4 extends React.Component {
+export class Section1 extends React.Component {
 
   constructor(props){
       super(props);
@@ -9,20 +9,20 @@ export class Section4 extends React.Component {
       togglePanels: []
       }
       this.toggleFunction = this.toggleFunction.bind(this);
-      this.createListItemExpert = this.createListItemExpert.bind(this);
+      this.createListItemBeginner = this.createListItemBeginner.bind(this);
       this.deleteSong = this.deleteSong.bind(this);
-      this.updateSongExpert = this.updateSongExpert.bind(this);
+      this.updateSongBeginner = this.updateSongBeginner.bind(this);
     }
 
-    updateSongExpert = (event) => {
-      this.props.updateSongExpert(this.state.item)
+    updateSongBeginner = (event) => {
+      this.props.updateSongBeginner(this.state.item)
     }
 
     deleteSong = (event) => {
       this.props.deleteSong(this.state.item)
     }
 
-    deleteSongExpert = (level, id) => {
+    deleteSongBeginner = (level, id) => {
       return fetch('https://towerbackend.herokuapp.com/' + level + '/' + id,  {
         method: 'DELETE',
         headers: new Headers({
@@ -36,14 +36,14 @@ export class Section4 extends React.Component {
     onDelete = (event) => {
       event.preventDefault();
       const data = new FormData(event.target);
-      this.deleteSongExpert('expert', data.get('id'))
+      this.deleteSongBeginner('beginner', data.get('id'))
     }
 
     renderDeleteButton = (item) => {
       if(item.id < 6) {
         return ''
       } else {
-        return <button className="delete" onClick={() => this.deleteSongExpert(item.difficulty, item.id)}>Delete</button>
+        return <button className="delete" onClick={() => this.deleteSongBeginner(item.difficulty, item.id)}>Delete</button>
       }
     }
 
@@ -66,7 +66,7 @@ export class Section4 extends React.Component {
       this.setState({ togglePanels })
     }
 
-  createListItemExpert(item){
+  createListItemBeginner(item){
     return (
       <li key={item.id}>
         <div className="profile">
@@ -89,9 +89,9 @@ export class Section4 extends React.Component {
   render () {
     return (
       <section>
-        <h2>Expert Songs</h2>
-        <ul className = "expertList">
-          {this.props.expertlistings.sort((a, b) => a.id - b.id).map(this.createListItemExpert)}
+        <h2>Beginner Songs</h2>
+        <ul className = "beginnerList">
+          {this.props.beginnerlistings.sort((a, b) => a.id - b.id).map(this.createListItemBeginner)}
         </ul>
       </section>
     );

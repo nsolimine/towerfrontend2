@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 
 import { Header } from "./header.js";
-import { Section } from "./intermediate.js";
-import { Section2 } from "./advanced.js";
-import { Section3 } from "./expert.js";
+import { Section1 } from "./beginner.js";
+import { Section2 } from "./intermediate.js";
+import { Section3 } from "./advanced.js";
+import { Section4 } from "./expert.js";
 import MyMap from "./map.js";
 import SongForm from "./form.js";
 import UpdateForm from "./update.js";
@@ -14,6 +15,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
+      beginner: [],
       intermediate: [],
       advanced: [],
       expert: [],
@@ -24,7 +26,7 @@ class App extends Component {
 
   loadData = () => {
     this.setState({loading: true})
-    Promise.all([this.getSongs("intermediate"), this.getSongs("advanced"), this.getSongs("expert")])
+    Promise.all([this.getSongs("beginner"), this.getSongs("intermediate"), this.getSongs("advanced"), this.getSongs("expert")])
     .then(() => {
       this.setState({loading: false})
     });
@@ -127,9 +129,10 @@ class App extends Component {
             </div>
           </div>
           <div className="songsDiv">
-            <Section intermediatelistings={this.state.intermediate} updateSongObj={this.updateSongObj} loadData={this.loadData} />
-            <Section2 advancedlistings={this.state.advanced} updateSongObj={this.updateSongObj} loadData={this.loadData} />
-            <Section3 expertlistings={this.state.expert} updateSongObj={this.updateSongObj} loadData={this.loadData} />
+            <Section1 beginnerlistings={this.state.beginner} updateSongObj={this.updateSongObj} loadData={this.loadData} />
+            <Section2 intermediatelistings={this.state.intermediate} updateSongObj={this.updateSongObj} loadData={this.loadData} />
+            <Section3 advancedlistings={this.state.advanced} updateSongObj={this.updateSongObj} loadData={this.loadData} />
+            <Section4 expertlistings={this.state.expert} updateSongObj={this.updateSongObj} loadData={this.loadData} />
           </div>
           <div className="mapDiv">
             <h3 className="map-header">Find a Denver music school near you!</h3>
