@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-
 import { Header } from "./header.js";
 import { Section1 } from "./beginner.js";
 import { Section2 } from "./intermediate.js";
@@ -9,12 +8,7 @@ import { Section4 } from "./expert.js";
 import MyMap from "./map.js";
 import SongForm from "./form.js";
 import UpdateForm from "./update.js";
-import { Button, Modal } from "react-bootstrap";
-import { BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
-
+import { HashRouter } from "react-router-dom";
 
 class App extends Component {
   constructor(props){
@@ -124,30 +118,10 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Header />
-        <main>
-          <div className="formDiv">
-            <h3>Suggest a song!</h3>
-            <SongForm onSubmit={this.onSubmit} />
-            <div className="updateDiv">
-              <h3>Update your submission!</h3>
-              <p>Remember to update <strong>ALL</strong> form fields!</p>
-              <UpdateForm  updateObj={this.state.updateObject} onUpdate={this.onUpdate} />
-            </div>
-          </div>
-          <div className="songsDiv">
-            <Section1 beginnerlistings={this.state.beginner} updateSongObj={this.updateSongObj} loadData={this.loadData} />
-            <Section2 intermediatelistings={this.state.intermediate} updateSongObj={this.updateSongObj} loadData={this.loadData} />
-            <Section3 advancedlistings={this.state.advanced} updateSongObj={this.updateSongObj} loadData={this.loadData} />
-            <Section4 expertlistings={this.state.expert} updateSongObj={this.updateSongObj} loadData={this.loadData} />
-          </div>
-          <div className="mapDiv">
-            <h3 className="map-header">Find a Denver music school near you!</h3>
-            <MyMap />
-          </div>
-        </main>
-      </div>
+      <HashRouter>
+        <div className="App">
+        </div>
+      </HashRouter>
     );
   }
 }

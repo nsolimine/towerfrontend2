@@ -5,6 +5,7 @@ export class Section1 extends React.Component {
   constructor(props){
       super(props);
       this.state = {
+      beginner: [],
       togglePanels: [],
       }
       this.toggleFunction = this.toggleFunction.bind(this);
@@ -12,6 +13,28 @@ export class Section1 extends React.Component {
       this.deleteSong = this.deleteSong.bind(this);
       this.updateSongBeginner = this.updateSongBeginner.bind(this);
     }
+
+
+    loadData = () => {
+      this.setState({loading: true})
+      Promise.all([this.getSongs("beginner")])
+      .then(() => {
+        this.setState({loading: false})
+      });
+    }
+
+    componentDidMount() {
+      this.loadData();
+    }
+
+    getSongs = (level) => {
+      return fetch("https://towerbackend.herokuapp.com/" + level)
+      .then(response => response.json())
+      .then(response => {
+        if (!response[level]) {throw new Error('Expected "level" ' + level + ' in JSON response');}
+        this.setState({[level]: response[level]})
+      });
+    };
 
     updateSongBeginner = (event) => {
       this.props.updateSongBeginner(this.state.item)
@@ -91,7 +114,7 @@ export class Section1 extends React.Component {
       <section>
         <h2>Beginner Songs</h2>
         <ul className = "beginnerList">
-          {this.props.beginnerlistings.sort((a, b) => a.id - b.id).map(this.createListItemBeginner)}
+          {this.state.beginnerlistings.sort((a, b) => a.id - b.id).map(this.createListItemBeginner)}
         </ul>
       </section>
     );

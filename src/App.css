@@ -62,10 +62,3 @@ ul,li {
 .map-header {
   color: #E9DBD2;
 }
-
-.sub-header {
-  background: linear-gradient(50deg, black, #E9DBD2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-size: 1.45rem;
-}
