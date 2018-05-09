@@ -30,9 +30,24 @@ export class Section1 extends React.Component {
       this.setState({ show: false })
     }
 
-    handleShow() {
+    handleShow(event) {
       this.setState({ show: true })
+      console.log("sup dawg", event.target.id);
     }
+
+    createListItemBeginner(item){
+      return (
+          <li key={item.id}>
+            <p>Difficulty: {item.difficulty}</p>
+            <p>Artist: {item.artist}</p>
+            <p>Techniques: {item.technique}</p>
+            <p><a href={item.url} target="blank">Listen on YouTube</a></p>
+            <p><a href={item.tabUrl} target="blank">Look at the tablature</a></p>
+          </li>
+
+      );
+    }
+
 
   render () {
     return (
@@ -40,34 +55,25 @@ export class Section1 extends React.Component {
         <h2>Beginner Songs</h2>
         <div>
           {this.state.beginner.map(item =>
-          <div>
-            <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
-              {item.song}
+            <Button id={item.song} bsStyle="primary" bsSize="large" onClick={this.handleShow}>
+            {item.song}
             </Button>
-
-            <Modal show={this.state.show} onHide={this.handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>"{item.song}"</Modal.Title>
-              </Modal.Header>
-
-              <Modal.Body>
-                <ul className = "beginnerList">
-                  <li key={item.id}>
-                    <p>Difficulty: {item.difficulty}</p>
-                    <p>Artist: {item.artist}</p>
-                    <p>Techniques: {item.technique}</p>
-                    <p><a href={item.url} target="blank">Listen on YouTube</a></p>
-                    <p><a href={item.tabUrl} target="blank">Look at the tablature</a></p>
-                  </li>
-                </ul>
-              </Modal.Body>
-
-              <Modal.Footer>
-                <Button onClick={this.handleClose}>Close</Button>
-              </Modal.Footer>
-            </Modal>
-          </div>
             )}
+            <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal.Header closeButton>
+            <Modal.Title></Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+            <ul className = "beginnerList">
+
+            </ul>
+            </Modal.Body>
+
+            <Modal.Footer>
+            <Button onClick={this.handleClose}>Close</Button>
+            </Modal.Footer>
+            </Modal>
         </div>
       </div>
     );
