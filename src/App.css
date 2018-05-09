@@ -62,3 +62,10 @@ ul,li {
 .map-header {
   color: #E9DBD2;
 }
+
+.btn-primary {
+  color: #9d9d9d;
+  background-color: #232220;
+  border-color: #232220;
+  margin: 1rem;
+}

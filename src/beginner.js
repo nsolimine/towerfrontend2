@@ -31,7 +31,7 @@ export class Section1 extends React.Component {
     }
 
     handleShow() {
-      this.setState({ show: !false })
+      this.setState({ show: true })
     }
 
   render () {
@@ -51,17 +51,15 @@ export class Section1 extends React.Component {
               </Modal.Header>
 
               <Modal.Body>
-                <section>
-                  <ul className = "beginnerList">
-                    <li key={item.id}>
-                      <p>Difficulty: {item.difficulty}</p>
-                      <p>Artist: {item.artist}</p>
-                      <p>Techniques: {item.technique}</p>
-                      <p><a href={item.url} target="blank">Listen on YouTube</a></p>
-                      <p><a href={item.tabUrl} target="blank">Look at the tablature</a></p>
-                    </li>
-                  </ul>
-                </section>
+                <ul className = "beginnerList">
+                  <li key={item.id}>
+                    <p>Difficulty: {item.difficulty}</p>
+                    <p>Artist: {item.artist}</p>
+                    <p>Techniques: {item.technique}</p>
+                    <p><a href={item.url} target="blank">Listen on YouTube</a></p>
+                    <p><a href={item.tabUrl} target="blank">Look at the tablature</a></p>
+                  </li>
+                </ul>
               </Modal.Body>
 
               <Modal.Footer>
