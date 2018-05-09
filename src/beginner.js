@@ -6,35 +6,25 @@ export class Section1 extends React.Component {
       super(props);
       this.state = {
       beginner: [],
-      togglePanels: [],
       }
-      this.toggleFunction = this.toggleFunction.bind(this);
-      this.createListItemBeginner = this.createListItemBeginner.bind(this);
-      this.deleteSong = this.deleteSong.bind(this);
-      this.updateSongBeginner = this.updateSongBeginner.bind(this);
     }
 
-
     loadData = () => {
-      this.setState({loading: true})
-      Promise.all([this.getSongs("beginner")])
-      .then(() => {
-        this.setState({loading: false})
-      });
+      const url = "https://towerbackend.herokuapp.com/beginner"
+      return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ beginner: data.beginner })
+      })
     }
 
     componentDidMount() {
-      this.loadData();
+      this.loadData()
     }
 
-    getSongs = (level) => {
-      return fetch("https://towerbackend.herokuapp.com/" + level)
-      .then(response => response.json())
-      .then(response => {
-        if (!response[level]) {throw new Error('Expected "level" ' + level + ' in JSON response');}
-        this.setState({[level]: response[level]})
-      });
-    };
+
+
+
 
     updateSongBeginner = (event) => {
       this.props.updateSongBeginner(this.state.item)
@@ -92,29 +82,30 @@ export class Section1 extends React.Component {
     return (
       <li key={item.id}>
         <div className="profile">
-          <h4 className="profileLevel" onClick={() => this.toggleFunction(item)}>Level Up: {item.artist}</h4>
+          <h4 className="profileLevel">Level Up: {item.artist}</h4>
         </div>
-        <div className={this.state.togglePanels.includes(item.id)?"skills-container":"skills-container hidden"}>
+        <div>
           <p>Difficulty: {item.difficulty}</p>
           <p>Artist: {item.artist}</p>
           <p>Song: "{item.song}"</p>
           <p>Techniques Used: {item.technique}</p>
           <p><a href={item.url} target="blank">Listen on YouTube</a></p>
           <p><a href={item.tabUrl} target="blank">Check out the tab!</a></p>
-          <div className="buttons">
+          {/* <div className="buttons">
               {this.renderUpdateButton(item)}
               {this.renderDeleteButton(item)}
-          </div>
+          </div> */}
         </div>
       </li>
     );
   }
+
   render () {
     return (
       <section>
         <h2>Beginner Songs</h2>
         <ul className = "beginnerList">
-          {this.state.beginnerlistings.sort((a, b) => a.id - b.id).map(this.createListItemBeginner)}
+          {this.state.beginner.sort((a, b) => a.id - b.id).map(this.createListItemBeginner)}
         </ul>
       </section>
     );

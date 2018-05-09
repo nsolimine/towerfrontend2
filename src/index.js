@@ -12,7 +12,7 @@ import SongForm from "./form.js";
 import UpdateForm from "./update.js";
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import { Nav, Navbar, NavItem, Button, Modal } from 'react-bootstrap';
+import { Nav, Navbar, NavItem } from 'react-bootstrap';
 
 ReactDOM.render(
   <Router>
@@ -55,7 +55,7 @@ ReactDOM.render(
       component={Header}
       />
       <Route
-      path="/Beginner" component={ Section1 } 
+      path="/Beginner" component={ Section1 }
       />
       <Route
       path="/Intermediate"

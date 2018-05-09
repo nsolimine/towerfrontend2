@@ -1,13 +1,5 @@
 import React, { Component } from 'react';
 import './App.css';
-import { Header } from "./header.js";
-import { Section1 } from "./beginner.js";
-import { Section2 } from "./intermediate.js";
-import { Section3 } from "./advanced.js";
-import { Section4 } from "./expert.js";
-import MyMap from "./map.js";
-import SongForm from "./form.js";
-import UpdateForm from "./update.js";
 import { HashRouter } from "react-router-dom";
 
 class App extends Component {
