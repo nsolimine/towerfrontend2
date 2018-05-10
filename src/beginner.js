@@ -58,15 +58,15 @@ export class Section1 extends React.Component {
             <Button id={item.song} bsStyle="primary" bsSize="large" onClick={this.handleShow}>
             {item.song}
             </Button>
-            )}
+          )}
             <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Header closeButton>
-            <Modal.Title>{item.song}</Modal.Title>
+            <Modal.Title></Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
             <ul className = "beginnerList">
-
+              {this.createListItemBeginner()}
             </ul>
             </Modal.Body>
 
