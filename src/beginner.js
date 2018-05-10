@@ -36,6 +36,7 @@ export class Section1 extends React.Component {
     }
 
     createListItemBeginner(item){
+
       return (
           <li key={item.id}>
             <p>Difficulty: {item.difficulty}</p>
@@ -66,7 +67,7 @@ export class Section1 extends React.Component {
 
             <Modal.Body>
             <ul className = "beginnerList">
-              {this.createListItemBeginner()}
+
             </ul>
             </Modal.Body>
 
