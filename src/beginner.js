@@ -61,7 +61,7 @@ export class Section1 extends React.Component {
             )}
             <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Header closeButton>
-            <Modal.Title></Modal.Title>
+            <Modal.Title>{item.song}</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
