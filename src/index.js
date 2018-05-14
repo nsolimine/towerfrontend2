@@ -8,6 +8,7 @@ import { Intermediate } from "./intermediate.js";
 import { Advanced } from "./advanced.js";
 import { Expert } from "./expert.js";
 import MyMap from "./map.js";
+import { Footer } from "./footer.js";
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
@@ -64,6 +65,8 @@ ReactDOM.render(
       <Route
       path="/MyMap" component={ MyMap }
       />
+
+      <Footer />
     </div>
   </Router>,
   document.getElementById('root'));
