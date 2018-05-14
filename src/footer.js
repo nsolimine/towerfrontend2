@@ -6,7 +6,7 @@ export class Footer extends React.Component {
     return (
       <div className="footer">
         <hr />
-        <p>Nick Solimine 2018</p>
+        <p className="footerText">&copy; Nick Solimine 2018</p>
       </div>
     );
   }

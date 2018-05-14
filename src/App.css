@@ -28,8 +28,8 @@ ul,li {
 
 .btn-primary {
   color: #9d9d9d;
-  background-color: #232220;
-  border-color: #232220;
+  background-color: #222;
+  border-color: #080808;
   margin: 1rem;
 }
 
@@ -37,10 +37,36 @@ ul,li {
   font-size: 1.5rem;
 }
 
+.headerComponent {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  color: #9d9d9d;
+  background-color: #222;
+  border-color: #222;
+  border-radius: 4px;
+}
+
+.songButtons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  }
+
 .footer {
-  position: fixed;
+  position: relative;
   bottom: 0;
   right: 0;
   left: 0;
-  margin: 0 20px;
+}
+
+.footerText {
+  text-align: center;
+  padding: 1rem;
+  color: #9d9d9d;
+  background-color: #222;
+  border-color: #222;
+  border-radius: 4px;
 }

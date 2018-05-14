@@ -37,13 +37,15 @@ export class Advanced extends React.Component {
   render () {
     return (
       <div>
-        <h2>Advanced Songs</h2>
-        <p className="sub-header">
-          The songs recommended for advanced players are where things really start to heat up!  This discipline
-          has songs that will test your strength and accuracy using complex picking patterns, tapping,
-          key changes, and lightning fast phrases.
-        </p>
-        <div>
+        <div className="headerComponent">
+          <h2>Advanced Songs</h2>
+          <p className="sub-header">
+            The songs recommended for advanced players are where things really start to heat up!  This discipline
+            has songs that will test your strength and accuracy using complex picking patterns, tapping,
+            key changes, and lightning fast phrases.
+          </p>
+        </div>
+        <div className="songButtons">
           {this.state.advanced.map(item =>
           <div>
             <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>

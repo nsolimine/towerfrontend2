@@ -36,14 +36,16 @@ export class Beginner extends React.Component {
 
   render () {
     return (
-      <div className="songComponent">
-        <h2>Beginner Songs</h2>
-        <p className="sub-header">
-          The songs recommended for beginners are testament that the fundamentals are still relevant
-          when writing hits!  This discipline introduces strumming patterns, open chord shapes, alternate picking,
-          and single-string melodic ideas.
-        </p>
-        <div>
+      <div>
+        <div className="headerComponent">
+          <h2>Beginner Songs</h2>
+          <p className="sub-header">
+            The songs recommended for beginners are testament that the fundamentals are still relevant
+            when writing hits!  This discipline introduces strumming patterns, open chord shapes, alternate picking,
+            and single-string melodic ideas.
+          </p>
+        </div>
+        <div className="songButtons">
           {this.state.beginner.map(item =>
           <div>
             <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>

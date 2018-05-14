@@ -3,7 +3,7 @@ import React from "react";
 export class Header extends React.Component {
   render () {
     return (
-      <header>
+      <header className="headerComponent">
         <h1>Guitar Tower</h1>
         <p className="sub-header">Thanks for checking out Guitar Tower!  Guitar Tower is an app to recommend songs
           to learn on guitar to improve your playing and technique repertoire whether you are just beginning your

@@ -37,13 +37,15 @@ export class Intermediate extends React.Component{
   render () {
     return (
       <div>
-        <h2>Intermediate Songs</h2>
-        <p className="sub-header">
-          The songs recommended for intermediate players are definitely a level up from the beginner songs!  This
-          discipline introduces finger-picking, heavy riffs, complex strumming, hammer-ons and pull-offs, and
-          alternate guitar tunings.
-        </p>
-        <div>
+        <div className="headerComponent">
+          <h2>Intermediate Songs</h2>
+          <p className="sub-header">
+            The songs recommended for intermediate players are definitely a level up from the beginner songs!  This
+            discipline introduces finger-picking, heavy riffs, complex strumming, hammer-ons and pull-offs, and
+            alternate guitar tunings.
+          </p>
+        </div>
+        <div className="songButtons">
           {this.state.intermediate.map(item =>
           <div>
             <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>

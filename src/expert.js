@@ -37,13 +37,15 @@ export class Expert extends React.Component {
   render () {
     return (
       <div>
-        <h2>Expert Songs</h2>
-        <p className="sub-header">
-          The songs recommended for expert players are some of the most difficult to play songs of all time!  Not
-          for the faint of heart, these songs employ the use of arpeggios, sweep picking, flamenco strumming,
-          multi-finger tapping and legato.
-        </p>
-        <div>
+        <div className="headerComponent">
+          <h2>Expert Songs</h2>
+          <p className="sub-header">
+            The songs recommended for expert players are some of the most difficult to play songs of all time!  Not
+            for the faint of heart, these songs employ the use of arpeggios, sweep picking, flamenco strumming,
+            multi-finger tapping and legato.
+          </p>
+        </div>
+        <div className="songButtons">
           {this.state.expert.map(item =>
           <div>
             <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
