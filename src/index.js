@@ -3,10 +3,10 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { Header } from "./header.js";
-import { Section1 } from "./beginner.js";
-import { Section2 } from "./intermediate.js";
-import { Section3 } from "./advanced.js";
-import { Section4 } from "./expert.js";
+import { Beginner } from "./beginner.js";
+import { Intermediate } from "./intermediate.js";
+import { Advanced } from "./advanced.js";
+import { Expert } from "./expert.js";
 import MyMap from "./map.js";
 import SongForm from "./form.js";
 import UpdateForm from "./update.js";
@@ -55,27 +55,22 @@ ReactDOM.render(
       component={Header}
       />
       <Route
-      path="/Beginner" component={ Section1 }
+      path="/Beginner" component={ Beginner }
       />
       <Route
-      path="/Intermediate"
-      render={(props) => <Section2 {...props} intermediatelistings={this.state.intermediate} updateSongObj={this.updateSongObj} loadData={this.loadData} />}
+      path="/Intermediate" component={ Intermediate }
       />
       <Route
-      path="/Advanced"
-      render={(props) => <Section3 {...props} advancedlistings={this.state.advanced} updateSongObj={this.updateSongObj} loadData={this.loadData} />}
+      path="/Advanced" component={ Advanced }
       />
       <Route
-      path="/Expert"
-      render={(props) => <Section4 {...props} expertlistings={this.state.expert} updateSongObj={this.updateSongObj} loadData={this.loadData} />}
+      path="/Expert" component={ Expert }
       />
       <Route
-      path="/Songform"
-      render={(props) => <SongForm {...props} onSubmit={this.onSubmit} />}
+      path="/SongForm" component={ SongForm }
       />
       <Route
-      path="/MyMap"
-      component={MyMap}
+      path="/MyMap" component={ MyMap }
       />
     </div>
   </Router>,

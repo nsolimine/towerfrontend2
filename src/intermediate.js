@@ -1,100 +1,75 @@
 import React from "react";
+import { Modal, Button, closeButton } from "react-bootstrap";
 
-export class Section2 extends React.Component{
+export class Intermediate extends React.Component{
 
   constructor(props){
       super(props);
       this.state = {
-      togglePanels: []
+        intermediate: [],
+        show: false
       }
-      this.toggleFunction = this.toggleFunction.bind(this);
-      this.createListItemIntermediate = this.createListItemIntermediate.bind(this);
-      this.deleteSongIntermediate = this.deleteSongIntermediate.bind(this);
-      this.updateSongIntermediate = this.updateSongIntermediate.bind(this);
+      this.handleClose = this.handleClose.bind(this)
+      this.handleShow = this.handleShow.bind(this)
     }
 
-    updateSongIntermediate = (event) => {
-      this.props.updateSongIntermediate(this.state.item)
-    }
-
-    deleteSongIntermediate = (event) => {
-      this.props.deleteSongIntermediate(this.state.item)
-    }
-
-    deleteSongIntermediate = (level, id) => {
-      return fetch('https://towerbackend.herokuapp.com/' + level + '/' + id, {
-        method: 'DELETE',
-        headers: new Headers({
-          'Content-Type': 'application/json',
-        })
+    loadData = () => {
+      const url = "https://towerbackend.herokuapp.com/intermediate"
+      return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ intermediate: data.intermediate })
       })
-      .then(response => this.props.loadData())
-      .catch(error => console.error('Error', error));
     }
 
-    onDeleteIntermediate = (event) => {
-      event.preventDefault();
-      const data = new FormData(event.target);
-      this.deleteSongIntermediate('intermediate', data.get('id'))
+    componentDidMount() {
+      this.loadData()
     }
 
-    renderDeleteButton = (item) => {
-      if(item.id < 6) {
-        return ''
-      } else {
-        return <button className="delete" onClick={() => this.deleteSongIntermediate(item.difficulty, item.id)}>Delete</button>
-      }
+    handleClose() {
+      this.setState({ show: false })
     }
 
-    renderUpdateButton = (item) => {
-      if(item.id < 6) {
-        return ''
-      } else {
-        return <button className="update" onClick={() => this.props.updateSongObj(item)}>Update</button>
-      }
+    handleShow() {
+      this.setState({ show:true })
     }
-
-    toggleFunction = (item) => {
-      const { togglePanels } = this.state
-      const index = togglePanels.indexOf(item.id)
-      if(index !== -1){
-        togglePanels.splice(index, 1)
-      } else {
-        togglePanels.push(item.id)
-      }
-      this.setState({ togglePanels })
-    }
-
-  createListItemIntermediate(item){
-    return (
-      <li key={item.id}>
-        <div className="profile">
-          <h4 className="profileLevel" onClick={() => this.toggleFunction(item)}>Level Up: {item.artist}</h4>
-        </div>
-        <div className={this.state.togglePanels.includes(item.id)?"song-list":"song-list hidden"}>
-          <p>Difficulty: {item.difficulty}</p>
-          <p>Artist: {item.artist}</p>
-          <p>Song: "{item.song}"</p>
-          <p>Techniques Used: {item.technique}</p>
-          <p><a href={item.url} target="blank">Listen on YouTube</a></p>
-          <p><a href={item.tabUrl} target="blank">Check out the tab!</a></p>
-          <div className="buttons">
-              {this.renderUpdateButton(item)}
-              {this.renderDeleteButton(item)}
-          </div>
-        </div>
-      </li>
-    );
-  }
 
   render () {
     return (
-      <section>
+      <div>
         <h2>Intermediate Songs</h2>
-        <ul className = "intermediateList">
-          {this.props.intermediatelistings.sort((a, b) => a.id - b.id).map(this.createListItemIntermediate)}
-        </ul>
-      </section>
+        <div>
+          {this.state.intermediate.map(item =>
+          <div>
+            <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
+              {item.song}
+            </Button>
+
+            <Modal show={this.state.show} onHide={this.handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>"{item.song}"</Modal.Title>
+              </Modal.Header>
+
+              <Modal.Body>
+                <ul className = "intermediateList">
+                  <li key={item.id}>
+                    <p>Difficulty: {item.difficulty}</p>
+                    <p>Artist: {item.artist}</p>
+                    <p>Techniques: {item.technique}</p>
+                    <p><a href={item.url} target="blank">Listen on YouTube</a></p>
+                    <p><a href={item.tabUrl} target="blank">Look at the tablature</a></p>
+                  </li>
+                </ul>
+              </Modal.Body>
+
+              <Modal.Footer>
+                <Button onClick={this.handleClose}>Close</Button>
+              </Modal.Footer>
+            </Modal>
+          </div>
+          )}
+        </div>
+      </div>
     );
   }
 }

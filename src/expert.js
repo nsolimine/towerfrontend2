@@ -1,99 +1,75 @@
 import React from "react";
+import { Modal, Button, closeButton } from "react-bootstrap";
 
-export class Section4 extends React.Component {
+export class Expert extends React.Component {
 
   constructor(props){
       super(props);
       this.state = {
-      togglePanels: []
+        expert: [],
+        show: false
       }
-      this.toggleFunction = this.toggleFunction.bind(this);
-      this.createListItemExpert = this.createListItemExpert.bind(this);
-      this.deleteSong = this.deleteSong.bind(this);
-      this.updateSongExpert = this.updateSongExpert.bind(this);
+      this.handleClose = this.handleClose.bind(this)
+      this.handleShow = this.handleShow.bind(this)
     }
 
-    updateSongExpert = (event) => {
-      this.props.updateSongExpert(this.state.item)
-    }
-
-    deleteSong = (event) => {
-      this.props.deleteSong(this.state.item)
-    }
-
-    deleteSongExpert = (level, id) => {
-      return fetch('https://towerbackend.herokuapp.com/' + level + '/' + id,  {
-        method: 'DELETE',
-        headers: new Headers({
-          'Content-Type': 'application/json',
-          })
+    loadData = () => {
+      const url = "https://towerbackend.herokuapp.com/expert"
+      return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ expert: data.expert })
       })
-      .then(response => this.props.loadData())
-      .catch(error => console.error('Error', error));
     }
 
-    onDelete = (event) => {
-      event.preventDefault();
-      const data = new FormData(event.target);
-      this.deleteSongExpert('expert', data.get('id'))
+    componentDidMount() {
+      this.loadData()
     }
 
-    renderDeleteButton = (item) => {
-      if(item.id < 6) {
-        return ''
-      } else {
-        return <button className="delete" onClick={() => this.deleteSongExpert(item.difficulty, item.id)}>Delete</button>
-      }
+    handleClose() {
+      this.setState({ show: false })
     }
 
-    renderUpdateButton = (item) => {
-      if(item.id < 6) {
-        return ''
-      } else {
-        return <button className="update" onClick={() => this.props.updateSongObj(item)}>Update</button>
-      }
+    handleShow() {
+      this.setState({ show: true })
     }
 
-    toggleFunction = (item) => {
-      const { togglePanels } = this.state
-      const index = togglePanels.indexOf(item.id)
-      if(index !== -1){
-        togglePanels.splice(index, 1)
-      } else {
-        togglePanels.push(item.id)
-      }
-      this.setState({ togglePanels })
-    }
-
-  createListItemExpert(item){
-    return (
-      <li key={item.id}>
-        <div className="profile">
-          <h4 className="profileLevel" onClick={() => this.toggleFunction(item)}>Level Up: {item.artist}</h4>
-        </div>
-        <div className={this.state.togglePanels.includes(item.id)?"skills-container":"skills-container hidden"}>
-          <p>Difficulty: {item.difficulty}</p>
-          <p>Artist: {item.artist}</p>
-          <p>Song: "{item.song}"</p>
-          <p>Techniques Used: {item.technique}</p>
-          <p><a href={item.url} target="blank">Listen on YouTube</a></p>
-          <p><a href={item.tabUrl} target="blank">Check out the tab!</a></p>
-          <div className="buttons">
-              {this.renderUpdateButton(item)}
-              {this.renderDeleteButton(item)}
-          </div>
-        </div>
-      </li>
-    );
-  }
   render () {
     return (
-      <section>
+      <div>
         <h2>Expert Songs</h2>
-        <ul className = "expertList">
-          {this.props.expertlistings.sort((a, b) => a.id - b.id).map(this.createListItemExpert)}
-        </ul>
-      </section>
+        <div>
+          {this.state.expert.map(item =>
+          <div>
+            <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
+              {item.song}
+            </Button>
+
+            <Modal show={this.state.show} onHide={this.handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>"{item.song}"</Modal.Title>
+              </Modal.Header>
+
+              <Modal.Body>
+                <ul className = "expertList">
+                  <li key={item.id}>
+                    <p>Difficulty: {item.difficulty}</p>
+                    <p>Artist: {item.artist}</p>
+                    <p>Techniques: {item.technique}</p>
+                    <p><a href={item.url} target="blank">Listen on YouTube</a></p>
+                    <p><a href={item.tabUrl} target="blank">Look at the tablature</a></p>
+                  </li>
+                </ul>
+              </Modal.Body>
+
+              <Modal.Footer>
+                <Button onClick={this.handleClose}>Close</Button>
+              </Modal.Footer>
+            </Modal>
+          </div>
+            )}
+        </div>
+      </div>
     );
   }
 }
