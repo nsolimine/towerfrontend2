@@ -69,3 +69,7 @@ ul,li {
   border-color: #232220;
   margin: 1rem;
 }
+
+.sub-header {
+  font-size: 1.5rem;
+}

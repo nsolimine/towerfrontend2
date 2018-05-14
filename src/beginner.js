@@ -36,7 +36,6 @@ export class Section1 extends React.Component {
     }
 
     createListItemBeginner(item){
-
       return (
           <li key={item.id}>
             <p>Difficulty: {item.difficulty}</p>
