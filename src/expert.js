@@ -38,7 +38,7 @@ export class Expert extends React.Component {
     return (
       <div>
         <h2>Expert Songs</h2>
-        <p className="subDescription">
+        <p className="sub-header">
           The songs recommended for expert players are some of the most difficult to play songs of all time!  Not
           for the faint of heart, these songs employ the use of arpeggios, sweep picking, flamenco strumming,
           multi-finger tapping and legato.

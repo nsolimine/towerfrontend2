@@ -36,9 +36,9 @@ export class Beginner extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className="songComponent">
         <h2>Beginner Songs</h2>
-        <p className="subDescription">
+        <p className="sub-header">
           The songs recommended for beginners are testament that the fundamentals are still relevant
           when writing hits!  This discipline introduces strumming patterns, open chord shapes, alternate picking,
           and single-string melodic ideas.

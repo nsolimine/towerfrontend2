@@ -5,7 +5,7 @@ export class Footer extends React.Component {
   render () {
     return (
       <div className="footer">
-        <hr className="footerBar" />
+        <hr />
         <p>Nick Solimine 2018</p>
       </div>
     );

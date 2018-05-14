@@ -11,47 +11,10 @@ body {
   padding: 20px;
 }
 
-main{
-  display: flex;
-  flex-direction: row;
-}
-
 ul,li {
   list-style-type: none;
   padding: 0;
   margin: 0;
-}
-
-.hidden {
-  display: none;
-}
-
-.songsDiv {
-  width: 35%;
-}
-
-.formDiv {
-  width: 32.5%;
-}
-
-.formDiv form {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-.updateDiv {
-
-}
-
-.updateDiv form {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-
-.mapDiv {
-  width: 32.5%;
-  opacity: 0.9;
 }
 
 .leaflet-container {
@@ -75,7 +38,7 @@ ul,li {
 }
 
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
   right: 0;
   left: 0;

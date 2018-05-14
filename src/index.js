@@ -67,6 +67,7 @@ ReactDOM.render(
       />
 
       <Footer />
+      
     </div>
   </Router>,
   document.getElementById('root'));
