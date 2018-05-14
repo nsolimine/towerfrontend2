@@ -8,8 +8,6 @@ import { Intermediate } from "./intermediate.js";
 import { Advanced } from "./advanced.js";
 import { Expert } from "./expert.js";
 import MyMap from "./map.js";
-import SongForm from "./form.js";
-import UpdateForm from "./update.js";
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import { Nav, Navbar, NavItem } from 'react-bootstrap';
@@ -38,10 +36,7 @@ ReactDOM.render(
             <NavItem eventKey={4} href="/Expert">
               Expert Songs
             </NavItem>
-            <NavItem eventKey={5} href="/SongForm">
-              Add a Song
-            </NavItem>
-            <NavItem eventKey={6} href="/MyMap">
+            <NavItem eventKey={5} href="/MyMap">
               Find an Instructor
             </NavItem>
           </Nav>
@@ -65,9 +60,6 @@ ReactDOM.render(
       />
       <Route
       path="/Expert" component={ Expert }
-      />
-      <Route
-      path="/SongForm" component={ SongForm }
       />
       <Route
       path="/MyMap" component={ MyMap }
