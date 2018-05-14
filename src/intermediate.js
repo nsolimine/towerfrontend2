@@ -56,7 +56,7 @@ export class Intermediate extends React.Component{
                     <p>Difficulty: {item.difficulty}</p>
                     <p>Artist: {item.artist}</p>
                     <p>Techniques: {item.technique}</p>
-                    <p><a href={item.url} target="blank">Listen on YouTube</a></p>
+                    <iframe width="auto" height="auto" src={item.url} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
                     <p><a href={item.tabUrl} target="blank">Look at the tablature</a></p>
                   </li>
                 </ul>
