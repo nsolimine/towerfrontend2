@@ -7,7 +7,7 @@ export class Beginner extends React.Component {
       super(props);
       this.state = {
         beginner: [],
-        show: false
+        show: null
       }
       this.handleClose = this.handleClose.bind(this)
       this.handleShow = this.handleShow.bind(this)
@@ -27,14 +27,19 @@ export class Beginner extends React.Component {
     }
 
     handleClose() {
-      this.setState({ show: false })
+      this.setState({ show: null })
     }
 
-    handleShow() {
-      this.setState({ show: true })
+    handleShow(e, index) {
+      this.setState({ show: index })
     }
 
   render () {
+    const { beginner } = this.state.beginner;
+    const displaySongs = Object.keys(beginner).filter(key => {
+      return beginner[key]
+    }).map((key, index) => {
+
     return (
       <div>
         <div className="headerComponent">
@@ -46,25 +51,24 @@ export class Beginner extends React.Component {
           </p>
         </div>
         <div className="songButtons">
-          {this.state.beginner.map(item =>
           <div>
-            <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
-              {item.song}
+            <Button id={key} bsStyle="primary" bsSize="large" onClick={e => this.handleShow(e, index)}>
+              {beginner[key].song}
             </Button>
 
-            <Modal show={this.state.show} onHide={this.handleClose}>
+            <Modal id={key} show={this.state.show === index} onHide={this.handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>"{item.song}"</Modal.Title>
+                <Modal.Title>"{beginner[key].song}"</Modal.Title>
               </Modal.Header>
 
               <Modal.Body>
                 <ul className = "beginnerList">
-                  <li key={item.id}>
-                    <p>Difficulty: {item.difficulty}</p>
-                    <p>Artist: {item.artist}</p>
-                    <p>Techniques: {item.technique}</p>
-                    <iframe width="auto" height="auto" src={item.url} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
-                    <p><a href={item.tabUrl} target="blank">Look at the tablature</a></p>
+                  <li key={beginner[key].id}>
+                    <p>Difficulty: {beginner[key].difficulty}</p>
+                    <p>Artist: {beginner[key].artist}</p>
+                    <p>Techniques: {beginner[key].technique}</p>
+                    <iframe width="auto" height="auto" src={beginner[key].url} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+                    <p><a href={beginner[key].tabUrl} target="blank">Look at the tablature</a></p>
                   </li>
                 </ul>
               </Modal.Body>
@@ -74,9 +78,9 @@ export class Beginner extends React.Component {
               </Modal.Footer>
             </Modal>
           </div>
-            )}
         </div>
       </div>
-    );
+    )
+  })
   }
 }
