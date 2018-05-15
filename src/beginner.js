@@ -39,7 +39,6 @@ export class Beginner extends React.Component {
     const displaySongs = Object.keys(beginner).filter(key => {
       return beginner[key]
     }).map((key, index) => {
-
     return (
       <div>
         <div className="headerComponent">
@@ -80,7 +79,7 @@ export class Beginner extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   })
   }
 }
