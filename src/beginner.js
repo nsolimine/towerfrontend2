@@ -30,15 +30,42 @@ export class Beginner extends React.Component {
       this.setState({ show: null })
     }
 
-    handleShow(e, index) {
-      this.setState({ show: index })
+    handleShow(e, beginnerID) {
+      console.log(beginnerID);
+      e.preventDefault()
+      if(beginnerID === this.state.beginner.id){
+        this.setState({
+          show: this.getSong()
+        })
+      }
+    }
+
+    getSong = () => {
+      let cardIndex = this.state.beginner
+      return this.state.beginner
+    }
+
+    createListItem (selectedSong, index) {
+      var selectedSong = this.state.beginner
+      console.log(selectedSong);
+      if(!this.state.show){
+        return null
+      }
+      const { show } = this.state
+      console.log(this.state.show, "yo");
+      return (
+        <li key={show.id}>
+          <p>Difficulty: {show.difficulty}</p>
+          <p>Artist: {show.artist}</p>
+          <p>Techniques: {show.technique}</p>
+          <iframe width="auto" height="auto" src={show.url} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+          <p><a href={show.tabUrl} target="blank">Look at the tablature</a></p>
+        </li>
+      )
     }
 
   render () {
-    const { beginner } = this.state.beginner;
-    const displaySongs = Object.keys(beginner).filter(key => {
-      return beginner[key]
-    }).map((key, index) => {
+    let beginnerID = this.state.beginner.id
     return (
       <div>
         <div className="headerComponent">
@@ -50,26 +77,23 @@ export class Beginner extends React.Component {
           </p>
         </div>
         <div className="songButtons">
+          {this.state.beginner.map((item, beginnerID) =>
           <div>
-            <Button id={key} bsStyle="primary" bsSize="large" onClick={e => this.handleShow(e, index)}>
-              {beginner[key].song}
+            <Button key={item.id} bsStyle="primary" bsSize="large" onClick={e => this.handleShow(e, beginnerID)}>
+              {item.song}
             </Button>
 
-            <Modal id={key} show={this.state.show === index} onHide={this.handleClose}>
+            <Modal show={this.state.show === beginnerID} onHide={this.handleClose}>
               <Modal.Header closeButton>
-                <Modal.Title>"{beginner[key].song}"</Modal.Title>
+                <Modal.Title>
+
+                </Modal.Title>
               </Modal.Header>
 
               <Modal.Body>
-                <ul className = "beginnerList">
-                  <li key={beginner[key].id}>
-                    <p>Difficulty: {beginner[key].difficulty}</p>
-                    <p>Artist: {beginner[key].artist}</p>
-                    <p>Techniques: {beginner[key].technique}</p>
-                    <iframe width="auto" height="auto" src={beginner[key].url} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
-                    <p><a href={beginner[key].tabUrl} target="blank">Look at the tablature</a></p>
-                  </li>
-                </ul>
+              <ul className = "beginnerList">
+                {this.createListItem()}
+              </ul>
               </Modal.Body>
 
               <Modal.Footer>
@@ -77,9 +101,9 @@ export class Beginner extends React.Component {
               </Modal.Footer>
             </Modal>
           </div>
+        )}
         </div>
       </div>
     );
-  })
   }
 }
