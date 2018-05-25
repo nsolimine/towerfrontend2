@@ -37,7 +37,7 @@ export class Beginner extends React.Component {
         })
     }
 
-    createListItem (selectedSong, index) {
+    createListItem () {
       const { show } = this.state
       return (
         <li key={show.id}>
@@ -62,7 +62,7 @@ export class Beginner extends React.Component {
           </p>
         </div>
         <div className="songButtons">
-          {this.state.beginner.map((item, beginnerID) =>
+          {this.state.beginner.map(item =>
           <div key={item.id}>
             <Button key={item.id} bsStyle="primary" bsSize="large" onClick={e => this.handleShow(e, item)}>
               {item.song}
@@ -74,12 +74,14 @@ export class Beginner extends React.Component {
             <div>
               <Modal.Header closeButton>
                 <Modal.Title>
-                  {this.state.show.song}
+                  "{this.state.show.song}"
                 </Modal.Title>
               </Modal.Header>
 
               <Modal.Body>
-                <ul className = "beginnerList">{this.createListItem()}</ul>
+                <ul className = "beginnerList">
+                  {this.createListItem()}
+                </ul>
               </Modal.Body>
 
               <Modal.Footer>

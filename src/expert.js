@@ -7,7 +7,7 @@ export class Expert extends React.Component {
       super(props);
       this.state = {
         expert: [],
-        show: false
+        show: null
       }
       this.handleClose = this.handleClose.bind(this)
       this.handleShow = this.handleShow.bind(this)
@@ -27,11 +27,27 @@ export class Expert extends React.Component {
     }
 
     handleClose() {
-      this.setState({ show: false })
+      this.setState({ show: null })
     }
 
-    handleShow() {
-      this.setState({ show: true })
+    handleShow(e, item) {
+      e.preventDefault()
+      this.setState({
+        show: item
+      })
+    }
+
+    createListItem() {
+      const { show } = this.state
+      return (
+        <li key={show.id}>
+          <p>Difficulty: {show.difficulty}</p>
+          <p>Artist: {show.artist}</p>
+          <p>Techniques: {show.technique}</p>
+          <iframe width="auto" height="auto" src={show.url} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+          <p><a href={show.tabUrl} target="blank">Look at the tablature</a></p>
+        </li>
+      )
     }
 
   render () {
@@ -47,34 +63,33 @@ export class Expert extends React.Component {
         </div>
         <div className="songButtons">
           {this.state.expert.map(item =>
-          <div>
-            <Button bsStyle="primary" bsSize="large" onClick={this.handleShow}>
+          <div key={item.id}>
+            <Button key={item.id} bsStyle="primary" bsSize="large" onClick={e => this.handleShow(e, item)}>
               {item.song}
             </Button>
-
-            <Modal show={this.state.show} onHide={this.handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>"{item.song}"</Modal.Title>
-              </Modal.Header>
-
-              <Modal.Body>
-                <ul className = "expertList">
-                  <li key={item.id}>
-                    <p>Difficulty: {item.difficulty}</p>
-                    <p>Artist: {item.artist}</p>
-                    <p>Techniques: {item.technique}</p>
-                    <iframe width="auto" height="auto" src={item.url} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
-                    <p><a href={item.tabUrl} target="blank">Look at the tablature</a></p>
-                  </li>
-                </ul>
-              </Modal.Body>
-
-              <Modal.Footer>
-                <Button onClick={this.handleClose}>Close</Button>
-              </Modal.Footer>
-            </Modal>
           </div>
             )}
+            <Modal show={this.state.show} onHide={this.handleClose}>
+              {this.state.show ? (
+              <div>
+                <Modal.Header closeButton>
+                  <Modal.Title>
+                    "{this.state.show.song}"
+                  </Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body>
+                  <ul className = "expertList">
+                    {this.createListItem()}
+                  </ul>
+                </Modal.Body>
+
+                <Modal.Footer>
+                  <Button onClick={this.handleClose}>Close</Button>
+                </Modal.Footer>
+              </div>
+            ) : null }
+          </Modal>
         </div>
       </div>
     );
