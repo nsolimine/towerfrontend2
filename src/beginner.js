@@ -30,14 +30,12 @@ export class Beginner extends React.Component {
       this.setState({ show: null })
     }
 
-    handleShow(e, beginnerID) {
-      console.log(beginnerID);
+    handleShow(e, item) {
       e.preventDefault()
-      if(beginnerID === this.state.beginner.id){
+
         this.setState({
-          show: this.getSong()
+          show: item
         })
-      }
     }
 
     getSong = () => {
@@ -46,13 +44,9 @@ export class Beginner extends React.Component {
     }
 
     createListItem (selectedSong, index) {
-      var selectedSong = this.state.beginner
-      console.log(selectedSong);
-      if(!this.state.show){
-        return null
-      }
+    
       const { show } = this.state
-      console.log(this.state.show, "yo");
+      console.log(show, "yo");
       return (
         <li key={show.id}>
           <p>Difficulty: {show.difficulty}</p>
@@ -65,7 +59,6 @@ export class Beginner extends React.Component {
     }
 
   render () {
-    let beginnerID = this.state.beginner.id
     return (
       <div>
         <div className="headerComponent">
@@ -78,30 +71,34 @@ export class Beginner extends React.Component {
         </div>
         <div className="songButtons">
           {this.state.beginner.map((item, beginnerID) =>
-          <div>
-            <Button key={item.id} bsStyle="primary" bsSize="large" onClick={e => this.handleShow(e, beginnerID)}>
+          <div key={item.id}>
+            <Button key={item.id} bsStyle="primary" bsSize="large" onClick={e => this.handleShow(e, item)}>
               {item.song}
             </Button>
 
-            <Modal show={this.state.show === beginnerID} onHide={this.handleClose}>
-              <Modal.Header closeButton>
-                <Modal.Title>
-
-                </Modal.Title>
-              </Modal.Header>
-
-              <Modal.Body>
-              <ul className = "beginnerList">
-                {this.createListItem()}
-              </ul>
-              </Modal.Body>
-
-              <Modal.Footer>
-                <Button onClick={this.handleClose}>Close</Button>
-              </Modal.Footer>
-            </Modal>
           </div>
-        )}
+          )}
+          <Modal show={this.state.show} onHide={this.handleClose}>
+          {this.state.show ? (
+            <div>
+            <Modal.Header closeButton>
+            <Modal.Title>
+              {this.state.show.song}
+            </Modal.Title>
+            </Modal.Header>
+
+            <Modal.Body>
+            <section>
+            <ul className = "beginnerList">{this.createListItem()}</ul>
+            </section>
+            </Modal.Body>
+
+            <Modal.Footer>
+            <Button onClick={this.handleClose}>Close</Button>
+            </Modal.Footer>
+            </div>
+          ) : null }
+          </Modal>
         </div>
       </div>
     );
