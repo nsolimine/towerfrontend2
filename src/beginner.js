@@ -32,21 +32,13 @@ export class Beginner extends React.Component {
 
     handleShow(e, item) {
       e.preventDefault()
-
         this.setState({
           show: item
         })
     }
 
-    getSong = () => {
-      let cardIndex = this.state.beginner
-      return this.state.beginner
-    }
-
     createListItem (selectedSong, index) {
-    
       const { show } = this.state
-      console.log(show, "yo");
       return (
         <li key={show.id}>
           <p>Difficulty: {show.difficulty}</p>
@@ -75,27 +67,24 @@ export class Beginner extends React.Component {
             <Button key={item.id} bsStyle="primary" bsSize="large" onClick={e => this.handleShow(e, item)}>
               {item.song}
             </Button>
-
           </div>
           )}
           <Modal show={this.state.show} onHide={this.handleClose}>
-          {this.state.show ? (
+              {this.state.show ? (
             <div>
-            <Modal.Header closeButton>
-            <Modal.Title>
-              {this.state.show.song}
-            </Modal.Title>
-            </Modal.Header>
+              <Modal.Header closeButton>
+                <Modal.Title>
+                  {this.state.show.song}
+                </Modal.Title>
+              </Modal.Header>
 
-            <Modal.Body>
-            <section>
-            <ul className = "beginnerList">{this.createListItem()}</ul>
-            </section>
-            </Modal.Body>
+              <Modal.Body>
+                <ul className = "beginnerList">{this.createListItem()}</ul>
+              </Modal.Body>
 
-            <Modal.Footer>
-            <Button onClick={this.handleClose}>Close</Button>
-            </Modal.Footer>
+              <Modal.Footer>
+                <Button onClick={this.handleClose}>Close</Button>
+              </Modal.Footer>
             </div>
           ) : null }
           </Modal>
