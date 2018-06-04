@@ -16,58 +16,60 @@ import { Nav, Navbar, NavItem } from 'react-bootstrap';
 ReactDOM.render(
   <Router>
     <div>
-      <Navbar inverse collapseOnSelect>
-        <Navbar.Header>
-          <Navbar.Brand>
-            <a href="/">Guitar Tower</a>
-          </Navbar.Brand>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-          <Nav>
-            <NavItem eventKey={1} href="/Beginner">
-              Beginner Songs
-            </NavItem>
-            <NavItem eventKey={2} href="/Intermediate">
-              Intermediate Songs
-            </NavItem>
-            <NavItem eventKey={3} href="/Advanced">
-              Advanced Songs
-            </NavItem>
-            <NavItem eventKey={4} href="/Expert">
-              Expert Songs
-            </NavItem>
-            <NavItem eventKey={5} href="/MyMap">
-              Find an Instructor
-            </NavItem>
-          </Nav>
-        </Navbar.Collapse>
-      </Navbar>
+      <div className="componentContainer">
+        <Navbar inverse collapseOnSelect>
+          <Navbar.Header>
+            <Navbar.Brand>
+              <a href="/">Guitar Tower</a>
+            </Navbar.Brand>
+            <Navbar.Toggle />
+          </Navbar.Header>
+          <Navbar.Collapse>
+            <Nav>
+              <NavItem eventKey={1} href="/Beginner">
+                Beginner Songs
+              </NavItem>
+              <NavItem eventKey={2} href="/Intermediate">
+                Intermediate Songs
+              </NavItem>
+              <NavItem eventKey={3} href="/Advanced">
+                Advanced Songs
+              </NavItem>
+              <NavItem eventKey={4} href="/Expert">
+                Expert Songs
+              </NavItem>
+              <NavItem eventKey={5} href="/MyMap">
+                Find an Instructor
+              </NavItem>
+            </Nav>
+          </Navbar.Collapse>
+        </Navbar>
 
-      <hr />
+        <hr />
 
-      <Route
-      exact path="/"
-      component={Header}
-      />
-      <Route
-      path="/Beginner" component={ Beginner }
-      />
-      <Route
-      path="/Intermediate" component={ Intermediate }
-      />
-      <Route
-      path="/Advanced" component={ Advanced }
-      />
-      <Route
-      path="/Expert" component={ Expert }
-      />
-      <Route
-      path="/MyMap" component={ MyMap }
-      />
+        <Route
+        exact path="/"
+        component={Header}
+        />
+        <Route
+        path="/Beginner" component={ Beginner }
+        />
+        <Route
+        path="/Intermediate" component={ Intermediate }
+        />
+        <Route
+        path="/Advanced" component={ Advanced }
+        />
+        <Route
+        path="/Expert" component={ Expert }
+        />
+        <Route
+        path="/MyMap" component={ MyMap }
+        />
+      </div>
 
       <Footer />
-      
+
     </div>
   </Router>,
   document.getElementById('root'));

@@ -11,6 +11,11 @@ body {
   padding: 20px;
 }
 
+html, body {
+  height: 100%;
+  position: relative;
+}
+
 ul,li {
   list-style-type: none;
   padding: 0;
@@ -33,8 +38,27 @@ ul,li {
   margin: 1rem;
 }
 
+.btn-primary:hover {
+  color: #000000;
+  background-color: #ffffff;
+  border-color: #000000;
+}
+
+.btn-primary:selected {
+  color: #000000;
+  background-color: #ffffff;
+  border-color: #000000;
+}
+
 .sub-header {
   font-size: 1.5rem;
+}
+
+.componentContainer {
+  min-height: calc(100vh - 120px);
+  overflow: hidden;
+  display: block;
+  position: relative;
 }
 
 .headerComponent {
