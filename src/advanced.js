@@ -1,99 +1,97 @@
 import React from "react";
+import { Modal, Button, closeButton } from "react-bootstrap";
 
-export class Section3 extends React.Component {
+export class Advanced extends React.Component {
 
   constructor(props){
       super(props);
       this.state = {
-      togglePanels: []
+        advanced: [],
+        show: null
       }
-      this.toggleFunction = this.toggleFunction.bind(this);
-      this.createListItemAdvanced = this.createListItemAdvanced.bind(this);
-      this.deleteSong = this.deleteSong.bind(this);
-      this.updateSongAdvanced = this.updateSongAdvanced.bind(this);
+      this.handleClose = this.handleClose.bind(this)
+      this.handleShow = this.handleShow.bind(this)
     }
 
-    updateSongAdvanced = (event) => {
-      this.props.updateSongAdvanced(this.state.item)
-    }
-
-    deleteSong = (event) => {
-      this.props.deleteSong(this.state.item)
-    }
-
-    deleteSongAdvanced = (level, id) => {
-      return fetch('https://towerbackend.herokuapp.com/' + level + '/' + id,  {
-        method: 'DELETE',
-        headers: new Headers({
-          'Content-Type': 'application/json',
-          })
+    loadData = () => {
+      const url = "https://towerbackend.herokuapp.com/advanced"
+      return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        this.setState({ advanced: data.advanced })
       })
-      .then(response => this.props.loadData())
-      .catch(error => console.error('Error', error));
     }
 
-    onDelete = (event) => {
-      event.preventDefault();
-      const data = new FormData(event.target);
-      this.deleteSongAdvanced('advanced', data.get('id'))
+    componentDidMount() {
+      this.loadData()
     }
 
-    renderDeleteButton = (item) => {
-      if(item.id < 6) {
-        return ''
-      } else {
-        return <button className="delete" onClick={() => this.deleteSongAdvanced(item.difficulty, item.id)}>Delete</button>
-      }
+    handleClose() {
+      this.setState({ show: null })
     }
 
-    renderUpdateButton = (item) => {
-      if(item.id < 6) {
-        return ''
-      } else {
-        return <button className="update" onClick={() => this.props.updateSongObj(item)}>Update</button>
-      }
+    handleShow(e, item) {
+      e.preventDefault()
+      this.setState({
+        show: item
+      })
     }
 
-    toggleFunction = (item) => {
-      const { togglePanels } = this.state
-      const index = togglePanels.indexOf(item.id)
-      if(index !== -1){
-        togglePanels.splice(index, 1)
-      } else {
-        togglePanels.push(item.id)
-      }
-      this.setState({ togglePanels })
+    createListItem() {
+      const { show } = this.state
+      return (
+        <li key={show.id}>
+          <p>Difficulty: {show.difficulty}</p>
+          <p>Artist: {show.artist}</p>
+          <p>Techniques: {show.technique}</p>
+          <iframe width="auto" height="auto" src={show.url} frameBorder="0" allow="autoplay; encrypted-media" allowFullScreen></iframe>
+          <p><a href={show.tabUrl} target="blank">Look at the tablature</a></p>
+        </li>
+      )
     }
 
-  createListItemAdvanced(item){
-    return (
-      <li key={item.id}>
-        <div className="profile">
-          <h4 className="profileLevel" onClick={() => this.toggleFunction(item)}>Level Up: {item.artist}</h4>
-        </div>
-        <div className={this.state.togglePanels.includes(item.id)?"skills-container":"skills-container hidden"}>
-          <p>Difficulty: {item.difficulty}</p>
-          <p>Artist: {item.artist}</p>
-          <p>Song: "{item.song}"</p>
-          <p>Techniques Used: {item.technique}</p>
-          <p><a href={item.url} target="blank">Listen on YouTube</a></p>
-          <p><a href={item.tabUrl} target="blank">Check out the tab!</a></p>
-          <div className="buttons">
-              {this.renderUpdateButton(item)}
-              {this.renderDeleteButton(item)}
-          </div>
-        </div>
-      </li>
-    );
-  }
   render () {
     return (
-      <section>
-        <h2>Advanced Songs</h2>
-        <ul className = "advancedList">
-          {this.props.advancedlistings.sort((a, b) => a.id - b.id).map(this.createListItemAdvanced)}
-        </ul>
-      </section>
+      <div>
+        <div className="headerComponent">
+          <h2>Advanced Songs</h2>
+          <p className="sub-header">
+            The songs recommended for advanced players are where things really start to heat up!  This discipline
+            has songs that will test your strength and accuracy using complex picking patterns, tapping,
+            key changes, and lightning fast phrases.
+          </p>
+        </div>
+        <div className="songButtons">
+          {this.state.advanced.map(item =>
+          <div key={item.id}>
+            <Button key={item.id} bsStyle="primary" bsSize="large" onClick={e => this.handleShow(e, item)}>
+              {item.song}
+            </Button>
+          </div>
+          )}
+            <Modal show={this.state.show} onHide={this.handleClose}>
+                {this.state.show ? (
+              <div>
+                <Modal.Header closeButton>
+                  <Modal.Title>
+                    "{this.state.show.song}"
+                  </Modal.Title>
+                </Modal.Header>
+
+                <Modal.Body>
+                  <ul className = "advancedList">
+                    {this.createListItem()}
+                  </ul>
+                </Modal.Body>
+
+                <Modal.Footer>
+                  <Button onClick={this.handleClose}>Close</Button>
+                </Modal.Footer>
+              </div>
+            ) : null }
+          </Modal>
+        </div>
+      </div>
     );
   }
 }
