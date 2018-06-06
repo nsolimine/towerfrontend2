@@ -94,3 +94,28 @@ ul,li {
   border-color: #222;
   border-radius: 4px;
 }
+
+.addLink {
+  display: block;
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  padding: 1em;
+  margin: -1em;
+}
+
+
+a:hover {
+  color: #000000;
+  text-decoration: none;
+}
+
+a {
+  color: #9d9d9d;
+}
+
+a:after {
+  color: #000000;
+  background-color: #ffffff;
+  border-color: #000000;
+}

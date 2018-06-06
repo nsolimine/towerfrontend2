@@ -7,6 +7,7 @@ import { Beginner } from "./beginner.js";
 import { Intermediate } from "./intermediate.js";
 import { Advanced } from "./advanced.js";
 import { Expert } from "./expert.js";
+import { Add } from "./add.js";
 import MyMap from "./map.js";
 import { Footer } from "./footer.js";
 import registerServiceWorker from './registerServiceWorker';
@@ -38,8 +39,11 @@ ReactDOM.render(
               <NavItem eventKey={4} href="/Expert">
                 Expert Songs
               </NavItem>
-              <NavItem eventKey={5} href="/MyMap">
-                Find an Instructor
+              <NavItem eventKey={5} href="/Add">
+                Add Your Own Song
+              </NavItem>
+              <NavItem eventKey={6} href="/MyMap">
+                Find An Instructor
               </NavItem>
             </Nav>
           </Navbar.Collapse>
@@ -62,6 +66,9 @@ ReactDOM.render(
         />
         <Route
         path="/Expert" component={ Expert }
+        />
+        <Route
+        path="/Add" component={ Add }
         />
         <Route
         path="/MyMap" component={ MyMap }

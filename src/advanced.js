@@ -90,6 +90,9 @@ export class Advanced extends React.Component {
               </div>
             ) : null }
           </Modal>
+          <Button className="addButton" bsStyle="primary" bsSize="large">
+            <a className="addLink" href="./add">Add Your Own Song</a>
+          </Button>
         </div>
       </div>
     );
